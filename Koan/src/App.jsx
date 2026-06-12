@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from './Component/Navbar.jsx'
-import buttons from './Component/buttons.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -91,9 +90,9 @@ function App() {
         <div className="absolute right-6 sm:right-10 md:right-16 bottom-10 sm:bottom-16 md:bottom-20">
           <p className="font-sans text-zinc-500 text-base sm:text-lg md:text-xl tracking-wide">
             KŌAN STUDIO
-            <button/>
           </p>
         </div>
+
       </section>
     </>
   )
