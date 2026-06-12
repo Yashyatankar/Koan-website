@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
+import gsap from 'gsap'
 
-function Button({ text = "Discover more", icon = true, className = "" }) {
+function Button({ text = "", icon = true, className = "" }) {
+
+
   return (
     <button className={`avancio-btn ${className}`}>
       <span>{text}</span>

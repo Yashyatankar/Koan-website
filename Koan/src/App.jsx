@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from './Component/Navbar.jsx'
+import Button from './Component/Button.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -43,6 +44,8 @@ function App() {
     return () => ScrollTrigger.getAll().forEach((t) => t.kill())
   }, [])
 
+
+
   const titleLine1 = ['Form', 'follows']
   const titleLine2 = ['silence']
 
@@ -64,6 +67,8 @@ function App() {
               {titleLine2.map((w, i) => (
                 <span key={i} className="word inline-block">{w}</span>
               ))}
+
+
             </div>
           </h1>
 
@@ -85,13 +90,23 @@ function App() {
           <p className="mt-2 text-xs sm:text-sm text-zinc-500 font-sans">
             Tokyo · Mumbai · Oslo
           </p>
+
         </div>
 
         <div className="absolute right-6 sm:right-10 md:right-16 bottom-10 sm:bottom-16 md:bottom-20">
           <p className="font-sans text-zinc-500 text-base sm:text-lg md:text-xl tracking-wide">
-            KŌAN STUDIO
+            KŌAN STUDIO            
+
           </p>
+
         </div>
+
+        <div className='absolute right-1/2 top-90'>
+
+          <Button text="Discover more" />
+
+        </div>
+
 
       </section>
     </>
