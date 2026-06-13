@@ -50,6 +50,11 @@ function App() {
             </div>
           </h1>
 
+          <div>
+              <img src="img/hero-image-3.jpg" alt="img" className='absolute object-center object-cover right-0 
+              bottom-10 w-[30vw] h-[40vh] rounded-3xl'/>
+          </div>
+
           <div className="absolute -top-6 sm:-top-8 left-0 overflow-hidden">
             <h2 className="text-zinc-400 text-xs sm:text-sm font-display leading-tight">
               <span className="word inline-block">Objects stripped</span>
@@ -80,6 +85,8 @@ function App() {
           <Button text="Discover more" />
         </div>
       </section>
+
+
       <AboutUs />
     </>
   )
