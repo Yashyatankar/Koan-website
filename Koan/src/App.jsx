@@ -1,12 +1,9 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from './Component/Navbar.jsx'
 import Button from './Component/Button.jsx'
 import CursorFollower from './Component/CursorFollower.jsx'
 import AboutUs from './Component/AboutUs.jsx'
-
-gsap.registerPlugin(ScrollTrigger)
 
 function App() {
   const heroRef = useRef(null)
@@ -14,7 +11,6 @@ function App() {
   useEffect(() => {
     const words = heroRef.current.querySelectorAll('.word')
 
-    // entrance stagger
     gsap.fromTo(
       words,
       { y: '100%', opacity: 0 },
@@ -27,26 +23,7 @@ function App() {
         delay: 0.3,
       }
     )
-
-    // exit stagger on scroll
-    gsap.to(words, {
-      y: '-100%',
-      opacity: 0,
-      duration: 0.6,
-      ease: 'power2.in',
-      stagger: 0.05,
-      scrollTrigger: {
-        trigger: heroRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-    })
-
-    return () => ScrollTrigger.getAll().forEach((t) => t.kill())
   }, [])
-
-
 
   const titleLine1 = ['Form', 'follows']
   const titleLine2 = ['silence']
@@ -60,7 +37,7 @@ function App() {
         className="bg-black w-full min-h-screen relative flex items-center justify-center px-6 sm:px-10 md:px-16 overflow-hidden"
       >
         <div className="relative w-full max-w-5xl">
-          <h1 className="font-display text-zinc-100 text-[12vw] sm:text-[14vw] md:text-[16vw] lg:text-[15vh] leading-none tracking-tight overflow-hidden">
+          <h1 className="font-display text-zinc-100 text-[12vw] sm:text-[14vw] md:text-[16vw] lg:text-[15vh] leading-none tracking-tight">
             <div className="overflow-hidden">
               {titleLine1.map((w, i) => (
                 <span key={i} className="word inline-block mr-3">{w}</span>
@@ -70,8 +47,6 @@ function App() {
               {titleLine2.map((w, i) => (
                 <span key={i} className="word inline-block">{w}</span>
               ))}
-
-
             </div>
           </h1>
 
@@ -93,26 +68,19 @@ function App() {
           <p className="mt-2 text-xs sm:text-sm text-zinc-500 font-sans">
             Tokyo · Mumbai · Oslo
           </p>
-
         </div>
 
         <div className="absolute right-6 sm:right-10 md:right-16 bottom-10 sm:bottom-16 md:bottom-20">
           <p className="font-sans text-zinc-500 text-base sm:text-lg md:text-xl tracking-wide">
-            KŌAN STUDIO            
-
+            KŌAN STUDIO
           </p>
-
         </div>
 
-        <div className='absolute right-1/2 top-90'>
-
+        <div className='absolute left-1/2 -translate-x-1/2 bottom-32'>
           <Button text="Discover more" />
-
         </div>
-        
       </section>
-      <AboutUs/>
-
+      <AboutUs />
     </>
   )
 }
