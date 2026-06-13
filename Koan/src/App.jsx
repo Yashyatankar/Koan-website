@@ -3,6 +3,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Navbar from './Component/Navbar.jsx'
 import Button from './Component/Button.jsx'
+import CursorFollower from './Component/CursorFollower.jsx'
+import AboutUs from './Component/AboutUs.jsx'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -51,6 +53,7 @@ function App() {
 
   return (
     <>
+      <CursorFollower />
       <Navbar />
       <section
         ref={heroRef}
@@ -106,9 +109,10 @@ function App() {
           <Button text="Discover more" />
 
         </div>
-
-
+        
       </section>
+      <AboutUs/>
+
     </>
   )
 }
