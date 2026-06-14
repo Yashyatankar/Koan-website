@@ -50,7 +50,7 @@ function CollectionCard() {
   );
 }
 
-function AboutUs() {
+function Collection() {
   return (
 <>
     <section className='w-full bg-black relative overflow-hidden px-4'>
@@ -89,4 +89,4 @@ function AboutUs() {
 )
 }
 
-export default AboutUs
+export default Collection

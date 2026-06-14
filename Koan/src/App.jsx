@@ -3,7 +3,7 @@ import gsap from 'gsap'
 import Navbar from './Component/Navbar.jsx'
 import Button from './Component/Button.jsx'
 import CursorFollower from './Component/CursorFollower.jsx'
-import AboutUs from './Component/AboutUs.jsx'
+import AboutUs from './Component/Collection.jsx'
 
 function App() {
   const heroRef = useRef(null)
@@ -88,6 +88,7 @@ function App() {
 
 
       <AboutUs />
+      <AboutSection/>
     </>
   )
 }
