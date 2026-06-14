@@ -3,35 +3,51 @@ import React from 'react'
 const collection = [
   {
     id: 1,
-    name: "Fauteuil 01",
+    name: "Furniture",
     category: "Seating",
     image: "/img/option-1.jpg",
-    price: "₹42,000",
   },
   {
     id: 2,
-    name: "Table Basse",
+    name: "Kitchen Table",
     category: "Tables",
     image: "/img/option-2.jpg",
-    price: "₹38,500",
   },
+
+  {
+    id:3,
+    name:"Bed",
+    category: "BedRoom Furniture",
+    image:"/img/option-3.jpg",
+
+
+  }
 ];
 
 function CollectionCard() {
-
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
       {collection.map((item) => (
-        <div key={item.id} className="p-4 border rounded">
-          <img src={item.image} alt={item.name} className="w-full h-40 object-cover mb-2" />
-          <h3 className="font-semibold">{item.name}</h3>
+        <div key={item.id} className="p-4">
+          <div className="relative group overflow-hidden rounded-4xl">
+            <img
+              src={item.image}
+              alt={item.name}
+              className="w-full h-80 object-cover transition-opacity duration-300 group-hover:opacity-50"
+            />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="text-black text-lg uppercase tracking-widest font-display font-thin">
+                {item.category}
+              </span>
+            </div>
+          </div>
+          <h3 className="font-semibold mt-2">{item.name}</h3>
           <p className="text-sm text-zinc-600">{item.category}</p>
           <p className="mt-2 font-medium">{item.price}</p>
         </div>
       ))}
     </div>
-  )
-
+  );
 }
 
 function AboutUs() {
@@ -65,8 +81,9 @@ function AboutUs() {
               </h2>
             
             </div>
+            <CollectionCard/>
       </div>
-      <CollectionCard/>
+      
     </section>
 </>
 )
