@@ -1,5 +1,39 @@
 import React from 'react'
 
+const collection = [
+  {
+    id: 1,
+    name: "Fauteuil 01",
+    category: "Seating",
+    image: "/img/option-1.jpg",
+    price: "₹42,000",
+  },
+  {
+    id: 2,
+    name: "Table Basse",
+    category: "Tables",
+    image: "/img/option-2.jpg",
+    price: "₹38,500",
+  },
+];
+
+function CollectionCard() {
+
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {collection.map((item) => (
+        <div key={item.id} className="p-4 border rounded">
+          <img src={item.image} alt={item.name} className="w-full h-40 object-cover mb-2" />
+          <h3 className="font-semibold">{item.name}</h3>
+          <p className="text-sm text-zinc-600">{item.category}</p>
+          <p className="mt-2 font-medium">{item.price}</p>
+        </div>
+      ))}
+    </div>
+  )
+
+}
+
 function AboutUs() {
   return (
 <>
@@ -27,9 +61,12 @@ function AboutUs() {
 
                 {/* Heading Text */}
                 <span>Collection</span>
+                
               </h2>
+            
             </div>
       </div>
+      <CollectionCard/>
     </section>
 </>
 )
