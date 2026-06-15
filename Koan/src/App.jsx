@@ -6,11 +6,25 @@ import CursorFollower from './Component/CursorFollower.jsx'
 import CollectionSection from './Component/CollectionSection.jsx'
 import AboutUs from './Component/AboutUs.jsx'
 import productSection from './Component/ProductSection.jsx'
+import Lenis from 'lenis'
 
 function App() {
+  
+    // Initialize Lenis
+  const lenis = new Lenis();
+
+  // Use requestAnimationFrame to continuously update the scroll
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+requestAnimationFrame(raf);
+  
   const heroRef = useRef(null)
 
   useEffect(() => {
+    
     const words = heroRef.current.querySelectorAll('.word')
 
     gsap.fromTo(
