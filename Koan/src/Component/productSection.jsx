@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function productSection() {
+export default function ProductSection() {
   const containerRef = useRef(null);
   const videoWrapperRef = useRef(null);
   const videoRef = useRef(null);
@@ -99,7 +99,7 @@ export default function productSection() {
           <video 
             ref={videoRef}
             className="w-full h-full object-cover scale-110 will-change-transform"
-            src="https://assets.mixkit.co/videos/preview/mixkit-interior-of-a-modern-living-room-4660-large.mp4" // Placeholder premium-looking interior video
+            src="vid/section-video.mp4" // Placeholder premium-looking interior video
             autoPlay 
             loop 
             muted 
