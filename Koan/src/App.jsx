@@ -5,6 +5,7 @@ import Button from './Component/Button.jsx'
 import CursorFollower from './Component/CursorFollower.jsx'
 import CollectionSection from './Component/CollectionSection.jsx'
 import AboutUs from './Component/AboutUs.jsx'
+import productSection from './Component/productSection.jsx'
 
 function App() {
   const heroRef = useRef(null)
@@ -89,6 +90,8 @@ function App() {
 
       <CollectionSection/> 
       <AboutUs/>   
+      <productSection/>
+      
     </>
   )
 }

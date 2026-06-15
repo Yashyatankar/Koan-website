@@ -1,0 +1,146 @@
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function productSection() {
+  const containerRef = useRef(null);
+  const videoWrapperRef = useRef(null);
+  const videoRef = useRef(null);
+  const textContentRef = useRef(null);
+  const headingRef = useRef(null);
+  const paragraphRef = useRef(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const videoWrapper = videoWrapperRef.current;
+    const video = videoRef.current;
+    const heading = headingRef.current;
+    const paragraph = paragraphRef.current;
+
+    // Create the master timeline tied to scroll
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: "top top",       // Starts when the top of container hits top of viewport
+        end: "+=200%",          // Length of the scroll animation
+        scrub: 1,               // Smooth scrubbing; takes 1 second to catch up to scrollbar
+        pin: true,              // Pins the section in place while animating
+        invalidateOnRefresh: true,
+      }
+    });
+
+    // 1. Scale the video wrapper to full screen and remove border radius
+    tl.to(videoWrapper, {
+      width: "100vw",
+      height: "100vh",
+      borderRadius: "0rem",
+      duration: 2,
+      ease: "power2.inOut"
+    });
+
+    // Optional: Subtle scale to the actual video inside for a parallax feel
+    tl.to(video, {
+      scale: 1.05,
+      duration: 2,
+      ease: "power2.inOut"
+    }, "<"); // "<" means start at the exact same time as the previous animation
+
+    // 2. Reveal the text section overlay subtly lowering video opacity or adding an overlay
+    tl.to(textContentRef.current, {
+      backgroundColor: "rgba(0, 0, 0, 0.4)", // Darkens the video slightly for text readability
+      duration: 0.5
+    });
+
+    // 3. Stagger the heading and paragraph text
+    tl.fromTo([heading, paragraph], 
+      { 
+        y: 50, 
+        opacity: 0 
+      },
+      { 
+        y: 0, 
+        opacity: 1, 
+        stagger: 0.3, 
+        duration: 1, 
+        ease: "power3.out" 
+      }, 
+      "-=0.2" // Starts slightly before the background overlay animation completely finishes
+    );
+
+    return () => {
+      // Clean up triggers on unmount
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
+  return (
+    <div className="bg-black text-white selection:bg-white selection:text-black">
+      {/* Spacer section to allow scrolling into the animation */}
+      <section className="h-screen w-full flex items-center justify-center bg-zinc-950 border-b border-zinc-900">
+        <div className="text-center space-y-4">
+          <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Archival Collection</p>
+          <h1 className="text-4xl md:text-6xl font-light tracking-tight">Symmetry in Space.</h1>
+          <p className="text-sm text-zinc-500 animate-bounce mt-8">Scroll Down</p>
+        </div>
+      </section>
+
+      {/* The Animated Section Container */}
+      <section 
+        ref={containerRef} 
+        className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center"
+      >
+        {/* Video Wrapper - Starts confined, expands to full screen */}
+        <div 
+          ref={videoWrapperRef} 
+          className="relative w-[80vw] h-[60vh] md:w-[60vw] md:h-[70vh] rounded-2xl overflow-hidden z-0 will-change-transform"
+        >
+          <video 
+            ref={videoRef}
+            className="w-full h-full object-cover scale-110 will-change-transform"
+            src="https://assets.mixkit.co/videos/preview/mixkit-interior-of-a-modern-living-room-4660-large.mp4" // Placeholder premium-looking interior video
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+          />
+        </div>
+
+        {/* Text Content Overlay */}
+        <div 
+          ref={textContentRef}
+          className="absolute inset-0 z-10 flex flex-col justify-center items-start px-8 md:px-24 bg-transparent transition-colors duration-300"
+        >
+          <div className="max-w-2xl space-y-6">
+            <h2 
+              ref={headingRef} 
+              className="text-4xl md:text-7xl font-extralight tracking-tight text-white opacity-0 pointer-events-none"
+            >
+              The Monolith <br />
+              <span className="font-serif italic font-normal">Lounge Chair</span>
+            </h2>
+            <p 
+              ref={paragraphRef} 
+              className="text-base md:text-lg text-zinc-300 leading-relaxed font-light tracking-wide opacity-0 pointer-events-none"
+            >
+              Crafted from premium sustainably sourced ebonized oak and brushed raw aluminum. A stark silhouette designed to anchoring modern architectural spaces, offering comfort without sacrificing form.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Next Section to scroll into */}
+      <section className="h-screen w-full bg-white text-black flex items-center justify-center px-8">
+        <div className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <h3 className="text-3xl md:text-5xl font-light tracking-tight leading-none">
+            Radical simplicity, exceptional utility.
+          </h3>
+          <p className="text-zinc-600 leading-relaxed">
+            Every joint is hand-milled. Every angle is deliberately calculated. We strip away the unnecessary noise of modern production to deliver pure, tactile longevity.
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}
