@@ -19,19 +19,22 @@ export default function ProductSection() {
     const heading = headingRef.current;
     const paragraph = paragraphRef.current;
 
-    // Create the master timeline tied to scroll
+    // Force video to mute so browsers don't block autoplay
+    if (video) {
+      video.muted = true;
+    }
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
-        start: "top top",       // Starts when the top of container hits top of viewport
-        end: "+=200%",          // Length of the scroll animation
-        scrub: 1,               // Smooth scrubbing; takes 1 second to catch up to scrollbar
-        pin: true,              // Pins the section in place while animating
+        start: "top top",
+        end: "+=200%",
+        scrub: 1,
+        pin: true,
         invalidateOnRefresh: true,
       }
     });
 
-    // 1. Scale the video wrapper to full screen and remove border radius
     tl.to(videoWrapper, {
       width: "100vw",
       height: "100vh",
@@ -40,20 +43,17 @@ export default function ProductSection() {
       ease: "power2.inOut"
     });
 
-    // Optional: Subtle scale to the actual video inside for a parallax feel
     tl.to(video, {
       scale: 1.05,
       duration: 2,
       ease: "power2.inOut"
-    }, "<"); // "<" means start at the exact same time as the previous animation
+    }, "<");
 
-    // 2. Reveal the text section overlay subtly lowering video opacity or adding an overlay
     tl.to(textContentRef.current, {
-      backgroundColor: "rgba(0, 0, 0, 0.4)", // Darkens the video slightly for text readability
+      backgroundColor: "rgba(0, 0, 0, 0.4)",
       duration: 0.5
     });
 
-    // 3. Stagger the heading and paragraph text
     tl.fromTo([heading, paragraph], 
       { 
         y: 50, 
@@ -66,18 +66,16 @@ export default function ProductSection() {
         duration: 1, 
         ease: "power3.out" 
       }, 
-      "-=0.2" // Starts slightly before the background overlay animation completely finishes
+      "-=0.2"
     );
 
     return () => {
-      // Clean up triggers on unmount
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
   return (
     <div className="bg-black text-white selection:bg-white selection:text-black">
-      {/* Spacer section to allow scrolling into the animation */}
       <section className="h-screen w-full flex items-center justify-center bg-zinc-950 border-b border-zinc-900">
         <div className="text-center space-y-4">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Archival Collection</p>
@@ -86,12 +84,10 @@ export default function ProductSection() {
         </div>
       </section>
 
-      {/* The Animated Section Container */}
       <section 
         ref={containerRef} 
         className="relative h-screen w-full overflow-hidden bg-black flex items-center justify-center"
       >
-        {/* Video Wrapper - Starts confined, expands to full screen */}
         <div 
           ref={videoWrapperRef} 
           className="relative w-[80vw] h-[60vh] md:w-[60vw] md:h-[70vh] rounded-2xl overflow-hidden z-0 will-change-transform"
@@ -99,7 +95,7 @@ export default function ProductSection() {
           <video 
             ref={videoRef}
             className="w-full h-full object-cover scale-110 will-change-transform"
-            src="vid/section-video.mp4" // Placeholder premium-looking interior video
+            src="/Vid/section-video.mp4" 
             autoPlay 
             loop 
             muted 
@@ -107,7 +103,6 @@ export default function ProductSection() {
           />
         </div>
 
-        {/* Text Content Overlay */}
         <div 
           ref={textContentRef}
           className="absolute inset-0 z-10 flex flex-col justify-center items-start px-8 md:px-24 bg-transparent transition-colors duration-300"
@@ -124,13 +119,12 @@ export default function ProductSection() {
               ref={paragraphRef} 
               className="text-base md:text-lg text-zinc-300 leading-relaxed font-light tracking-wide opacity-0 pointer-events-none"
             >
-              Crafted from premium sustainably sourced ebonized oak and brushed raw aluminum. A stark silhouette designed to anchoring modern architectural spaces, offering comfort without sacrificing form.
+              Crafted from premium sustainably sourced ebonized oak and brushed raw aluminum. A stark silhouette designed to anchor modern architectural spaces, offering comfort without sacrificing form.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Next Section to scroll into */}
       <section className="h-screen w-full bg-white text-black flex items-center justify-center px-8">
         <div className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <h3 className="text-3xl md:text-5xl font-light tracking-tight leading-none">

@@ -5,22 +5,24 @@ import Button from './Component/Button.jsx'
 import CursorFollower from './Component/CursorFollower.jsx'
 import CollectionSection from './Component/CollectionSection.jsx'
 import AboutUs from './Component/AboutUs.jsx'
-import productSection from './Component/ProductSection.jsx'
+import ProductSection from './Component/ProductSection.jsx'
 import Lenis from 'lenis'
+import 'lenis/dist/lenis.css';
+import FAQ from './Component/FAQ.jsx'
 
 function App() {
-  
-    // Initialize Lenis
-  const lenis = new Lenis();
 
-  // Use requestAnimationFrame to continuously update the scroll
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
+  useEffect(() => {
+      // 1. Initialize Lenis Smooth Scroll
+      const lenis = new Lenis({
+        autoRaf: true, // Modern Lenis automatically updates frames for you
+      });
 
-requestAnimationFrame(raf);
-  
+      return () => {
+        lenis.destroy(); // Cleanup on unmount
+      };
+    }, []);
+    
   const heroRef = useRef(null)
 
   useEffect(() => {
@@ -102,9 +104,10 @@ requestAnimationFrame(raf);
         </div>
       </section>
 
-      <CollectionSection/> 
-      <AboutUs/>   
-      <productSection/>
+      <CollectionSection /> 
+      <AboutUs />   
+      <ProductSection />
+      <FAQ />
       
     </>
   )
