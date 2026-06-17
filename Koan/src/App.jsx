@@ -9,6 +9,7 @@ import ProductSection from './Component/ProductSection.jsx'
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css';
 import FAQ from './Component/FAQ.jsx'
+import Footer from './Component/Footer.jsx'
 
 function App() {
 
@@ -104,10 +105,12 @@ function App() {
         </div>
       </section>
 
-      <CollectionSection /> 
+      
       <AboutUs />   
       <ProductSection />
+      <CollectionSection /> 
       <FAQ />
+      <Footer/>
       
     </>
   )

@@ -37,7 +37,7 @@ function CollectionCard() {
               className="w-full h-80 object-cover transition-opacity duration-300 group-hover:opacity-50"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span className="text-black text-lg uppercase tracking-widest font-display font-thin">
+              <span className="text-black text-lg uppercase tracking-bold font-display font-thin">
                 {item.category}
               </span>
             </div>
@@ -54,7 +54,7 @@ function CollectionCard() {
 const CollectionSection = () => {
   return (
     <section className='w-full bg-black relative overflow-hidden px-4'>
-      <div className='w-full px-3 py-2 bg-white rounded-4xl relative'>
+      <div className='w-full px-3 py-2 bg-white rounded-4xl relative my-5'>
         <div className="flex items-center justify-start my-8">
               <h2 className="flex items-center text-2xl font-bold tracking-wide uppercase text-zinc-800 md:text-3xl font-display ">
                 {/* SVG Icon with right border acting as the line */}

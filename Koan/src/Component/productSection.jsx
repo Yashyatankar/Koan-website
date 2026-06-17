@@ -76,7 +76,7 @@ export default function ProductSection() {
 
   return (
     <div className="bg-black text-white selection:bg-white selection:text-black">
-      <section className="h-screen w-full flex items-center justify-center bg-zinc-950 border-b border-zinc-900">
+      <section className="h-screen w-full flex items-center justify-center bg-black border-b border-zinc-900">
         <div className="text-center space-y-4">
           <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">Archival Collection</p>
           <h1 className="text-4xl md:text-6xl font-light tracking-tight">Symmetry in Space.</h1>
