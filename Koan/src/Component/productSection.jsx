@@ -125,7 +125,7 @@ export default function ProductSection() {
         </div>
       </section>
 
-      <section className="h-screen w-full bg-white text-black flex items-center justify-center px-8">
+      <section className="h-screen w-full bg-zinc-200 text-black flex items-center justify-center px-8">
         <div className="max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <h3 className="text-3xl md:text-5xl font-light tracking-tight leading-none">
             Radical simplicity, exceptional utility.

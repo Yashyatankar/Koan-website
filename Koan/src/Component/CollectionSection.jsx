@@ -54,7 +54,7 @@ function CollectionCard() {
 const CollectionSection = () => {
   return (
     <section className='w-full bg-black relative overflow-hidden px-4'>
-      <div className='w-full px-3 py-2 bg-white rounded-4xl relative my-5'>
+      <div className='w-full px-3 py-2 bg-zinc-200 rounded-4xl relative my-5'>
         <div className="flex items-center justify-start my-8">
               <h2 className="flex items-center text-2xl font-bold tracking-wide uppercase text-zinc-800 md:text-3xl font-display ">
                 {/* SVG Icon with right border acting as the line */}

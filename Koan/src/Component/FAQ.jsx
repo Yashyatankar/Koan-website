@@ -31,39 +31,42 @@ function FAQ() {
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-6">
-      {faqs.map((faq, index) => (
-        <div
-          key={index}
-          className="border-b border-zinc-700 py-4"
-        >
-          <button
-            onClick={() => handleClick(index)}
-            className="w-full flex justify-between items-center text-left"
-          >
-            <h3 className="text-lg font-semibold">
-              {faq.question}
-            </h3>
+    <section className="bg-zinc-200">
+      <div className="w-full max-w-3xl mx-auto p-6 ">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="border-b border-zinc-700 py-4"
+              >
+                <button
+                  onClick={() => handleClick(index)}
+                  className="w-full flex justify-between items-center text-left"
+                >
+                  <h3 className="text-lg font-semibold">
+                    {faq.question}
+                  </h3>
 
-            <span>
-              {openIndex === index ? "-" : "+"}
-            </span>
-          </button>
+                  <span>
+                    {openIndex === index ? "-" : "+"}
+                  </span>
+                </button>
 
-          <div
-            className={`overflow-hidden transition-all duration-300 ${
-              openIndex === index
-                ? "max-h-40 mt-3"
-                : "max-h-0"
-            }`}
-          >
-            <p className="text-zinc-400">
-              {faq.answer}
-            </p>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ${
+                    openIndex === index
+                      ? "max-h-40 mt-3"
+                      : "max-h-0"
+                  }`}
+                >
+                  <p className="text-zinc-600">
+                    {faq.answer}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
-        </div>
-      ))}
-    </div>
+    </section>
+   
   );
 }
 
