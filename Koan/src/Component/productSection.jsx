@@ -95,7 +95,7 @@ export default function ProductSection() {
           <video 
             ref={videoRef}
             className="w-full h-full object-cover scale-110 will-change-transform"
-            src="/Vid/section-video.mp4" 
+            src="/Vid/product-section-vid.mp4" 
             autoPlay 
             loop 
             muted 
